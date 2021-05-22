@@ -1,0 +1,17 @@
+.flipButton {
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.destinationInput {
+  opacity: 0.8 !important;
+}
+
+.destinationInput > input {
+  background-color: gainsboro !important;
+  opacity: 0.8 !important;
+}
+
+label {
+  display: block;
+}
