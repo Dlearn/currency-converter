@@ -1,23 +1,10 @@
-import { debounce } from "lodash";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  Button,
-  Container,
-  Divider,
-  Dropdown,
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Input,
-  Label,
-  Segment,
-} from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { Grid, Segment } from "semantic-ui-react";
 
+import ACCESS_KEY from "../constants/accessKey";
 import countryOptions from "../constants/countryOptions";
 import Converter from "./Converter";
-
-const APP_KEY = "77e4c8d314772d486c5ea441dd615808";
+import Chart from "./Chart";
 
 export default function App() {
   const [rates, setRates] = useState({});
@@ -27,29 +14,20 @@ export default function App() {
 
   useEffect(() => {
     const symbols = countryOptions.map(({ value }) => value).join(",");
-    // fetch(
-    //   `http://api.exchangeratesapi.io/v1/latest?access_key=${APP_KEY}&symbols=${symbols}`,
-    // )
-    //   .then((resp) => resp.json())
-    //   .then(({ rates: data, success, timestamp: timestampRes }) => {
-    //     if (success) {
-    //       setRates(data);
-    //       setTimestamp(timestampRes);
-    //     }
-    //   });
-    setRates({
-      EUR: 1,
-      USD: 1.218125,
-      GBP: 0.860835,
-      CAD: 1.469778,
-      AUD: 1.575433,
-      SGD: 1.621562,
-    });
-    setTimestamp(new Date(1621689724 * 1000));
+    fetch(
+      `http://api.exchangeratesapi.io/v1/latest?access_key=${ACCESS_KEY}&symbols=${symbols}`,
+    )
+      .then((resp) => resp.json())
+      .then(({ rates: data, success, timestamp: timestampRes }) => {
+        if (success) {
+          setRates(data);
+          setTimestamp(new Date(timestampRes * 1000));
+        }
+      });
   }, []);
 
   return (
-    <Container>
+    <>
       <Segment>
         <Grid stackable>
           <Converter
@@ -62,6 +40,7 @@ export default function App() {
           />
         </Grid>
       </Segment>
-    </Container>
+      <Chart country1={country1} country2={country2} />
+    </>
   );
 }

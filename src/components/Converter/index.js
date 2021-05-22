@@ -1,18 +1,6 @@
 import { debounce } from "lodash";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  Button,
-  Container,
-  Divider,
-  Dropdown,
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Input,
-  Label,
-  Segment,
-} from "semantic-ui-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Button, Dropdown, Form, Grid, Input } from "semantic-ui-react";
 
 import countryOptions from "../../constants/countryOptions";
 
