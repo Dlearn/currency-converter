@@ -18,7 +18,7 @@ export default function Chart({ country1, country2 }) {
 
   const getHistoricalRate = useCallback(async (date) => {
     await fetch(
-      `http://api.exchangeratesapi.io/v1/${date}?access_key=${ACCESS_KEY}&symbols=${symbols}`,
+      `https://api.exchangeratesapi.io/v1/${date}?access_key=${ACCESS_KEY}&symbols=${symbols}`,
     )
       .then((resp) => resp.json())
       .then(({ rates }) => {

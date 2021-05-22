@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     const symbols = countryOptions.map(({ value }) => value).join(",");
     fetch(
-      `http://api.exchangeratesapi.io/v1/latest?access_key=${ACCESS_KEY}&symbols=${symbols}`,
+      `https://api.exchangeratesapi.io/v1/latest?access_key=${ACCESS_KEY}&symbols=${symbols}`,
     )
       .then((resp) => resp.json())
       .then(({ rates: data, success, timestamp: timestampRes }) => {
