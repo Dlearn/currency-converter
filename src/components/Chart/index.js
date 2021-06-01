@@ -4,10 +4,10 @@ import { Line } from "react-chartjs-2";
 import ACCESS_KEY from "../../constants/accessKey";
 import countryOptions from "../../constants/countryOptions";
 
-const d = new Date();
 const last7Days = [];
-for (let i = 0; i < 7; i++) {
-  d.setDate(d.getDate() - 1);
+for (let i = 6; i >= 0; i--) {
+  const d = new Date();
+  d.setDate(d.getDate() - i);
   last7Days.push(d.toISOString().slice(0, 10));
 }
 const symbols = countryOptions.map(({ value }) => value).join(",");
